@@ -9,9 +9,9 @@ export const Tabs = ({ tabs, activeTabId, onTabSelected }) => {
     return activeTabId;
   };
 
-  const activeTab = Array.isArray(tabs)
-    ? tabs.find(tab => tab.id === activeTabId) || tabs[0]
-    : [];
+  const safeTabs = Array.isArray(tabs) ? tabs : [];
+  const activeTab =
+    safeTabs.find(tab => tab.id === activeTabId) || safeTabs[0] || null;
 
   return (
     <div data-cy="TabsComponent">
